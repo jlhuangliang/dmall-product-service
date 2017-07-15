@@ -24,9 +24,9 @@ public class ProductController {
 
 	public ProductController() throws ParseException {
 		this.products = Arrays.asList(
-				new Product("d001", "Li Shizhen", formatter.parse("2015-04-23")),
-				new Product("d002", "Hua Tuo", formatter.parse("2015-05-12")),
-				new Product("d003", "Zhang Zhongjing", formatter.parse("2015-04-27")));
+				new Product("p001", "Iphone 6s", formatter.parse("2015-04-23")),
+				new Product("p002", "Xiaomi", formatter.parse("2015-05-12")),
+				new Product("p003", "Oppo R11", formatter.parse("2015-04-27")));
 	}
 
 	@GetMapping
@@ -35,10 +35,10 @@ public class ProductController {
 		return products;
 	}
 
-	@RequestMapping(value = "/{doctorId}", method = RequestMethod.GET, headers = "Accept=application/json")
-	public Product getDoctorByDoctorId(@PathVariable("doctorId") final String doctorId) {
-		Optional<Product> doctor = products.stream().filter(c -> Objects.equals(c.getProdcutId(), doctorId)).findAny();
+	@RequestMapping(value = "/{productId}", method = RequestMethod.GET, headers = "Accept=application/json")
+	public Product getProductbyId(@PathVariable("productId") final String productId) {
+		Optional<Product> product = products.stream().filter(c -> Objects.equals(c.getProdcutId(), productId)).findAny();
 
-		return doctor.isPresent() ? doctor.get() : null;
+		return product.isPresent() ? product.get() : null;
 	}
 }
